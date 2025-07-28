@@ -1,46 +1,73 @@
 #include <stdio.h>
 
 //Exibição de matriz
-void exibir_matriz(int matriz[10][10], int tamanho) {
-    for (int i = 0; i < tamanho; i++) {
-        for (int j = 0; j < tamanho; j++) {
+void exibir_matriz(int matriz[5][5]) {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
             printf("%d", matriz[i][j]);
         }
         printf("\n");
     }
 }
 
-//Gerando tabuleiro
-void gerar_tabuleiro_aventureiro(int tabuleiro[10][10]) {
-    //Iniciando com 0
-    for (int i = 0; i < 10; i++) 
-        for (int j = 0; j < 10; j++) 
-            tabuleiro[i][j] = 0;
-    
-    //Posiciona navos na horizontal
-    for (int j = 2; j < 5; j++)
-        tabuleiro[0][j] = 3;
+//Habilidade Cone
+void habilidade_cone(int matriz[5][5]) {
+    int cone[5][5] = {
+        {0,0,1,0,0},
+        {0,1,1,1,0},
+        {1,1,1,1,1},
+        {0,0,0,0,0},
+        {0,0,0,0,0}
+    };
 
-    //Posiciona navos na vertical
-    for (int i = 2; i < 5; i++)
-        tabuleiro[i][0] = 3;
-        
-    //Posiciona navio na diagonal principal
-    for (int i = 0; i < 3; i++)
-        tabuleiro[i][i] = 3;
-    
-    //Posiciona navio na diagonal secundária
-    for (int i = 0; i < 3; i++)
-        tabuleiro[i][9 - i] = 3;
+    for (int i = 0; i < 5; i++) 
+        for (int j = 0; j < 5; j++)
+            matriz[i][j] = cone[i][j];
 }
 
+//Habilidade Cruz
+void habilidade_cruz(int matriz[5][5]) {
+    int cruz[5][5] = {
+        {0,0,1,0,0},
+        {1,1,1,1,1},
+        {0,0,1,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0}
+    };
+    for (int i = 0; i < 5; i++)
+        for (int j = 0; j < 5; j++) {
+            matriz[i][j] = cruz[i][j];
+        }
+}
 
+//Habilidade Octaedro
+void habilidade_Octaedro(int matriz[5][5]) {
+    int octaedro[5][5] = {
+        {0,0,1,0,0},
+        {0,1,1,1,0},
+        {0,0,1,0,0},
+        {0,0,0,0,0},
+        {0,0,0,0,0}
+    };
+    for (int i = 0; i < 5; i++)
+        for (int j = 0; j < 5; j++) {
+            matriz[i][j] = octaedro[i][j];
+        }
+}
 int main() {
+    int habilidade[5][5];
 
-    int tabuleiro[10][10];
-    gerar_tabuleiro_aventureiro(tabuleiro);
-    printf("Tabuleiro - Nivel Aventureiro: \n");
-    exibir_matriz(tabuleiro, 10);
+    printf("Habilidade: Cone\n");
+    habilidade_cone(habilidade);
+    exibir_matriz(habilidade);
+
+    printf("\nHabilidade: Cruz\n");
+    habilidade_cruz(habilidade);
+    exibir_matriz(habilidade);
+
+    printf("\nHabilidade: Octaedro\n");
+    habilidade_Octaedro(habilidade);
+    exibir_matriz(habilidade);
 
     return 0;
 }
