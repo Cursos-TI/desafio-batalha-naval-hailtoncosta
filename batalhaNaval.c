@@ -17,12 +17,16 @@ void gerar_tabuleiro_aventureiro(int tabuleiro[10][10]) {
         for (int j = 0; j < 10; j++) 
             tabuleiro[i][j] = 0;
             
-    //Posiciona navios na horizontal
+    //Posiciona navis na horizontal
     for (int i = 2; i < 6; i++)
         tabuleiro[i][0] = 3;
         
     //Posiciona navio na diagonal principal
     for (int i = 0; i < 4; i++)
+        tabuleiro[i][i] = 3;
+    
+    //Posiciona navio na diagonal principal
+    for (int i = 2; i < 5; i++)
         tabuleiro[i][i] = 3;
         
     //Posiciona navio na diagonal secundária
